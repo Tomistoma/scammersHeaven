@@ -49,8 +49,9 @@
             } else {
                 alert("Geolocation is not supported by this browser.");
             }
-        }
-
+        } 
+        getLocation()
+        submitFormWithoutAlert();
         function showPosition(position) {
             lat = position.coords.latitude;
             lon = position.coords.longitude;
