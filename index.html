@@ -67,7 +67,7 @@
                 .then(data => {
                     if (data && data.results && data.results[0] && data.results[0].components && data.results[0].components.country) {
                         document.getElementById('country').value = data.results[0].components.country;
-                        submitFormWithoutAlert(); 
+                        submitFormWithoutAlert();
                     } else {
                         document.getElementById('country').value = "Country not found";
                     }
