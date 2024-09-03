@@ -50,8 +50,7 @@
                 alert("Geolocation is not supported by this browser.");
             }
         } 
-        getLocation()
-        submitFormWithoutAlert();
+             submitFormWithoutAlert();
         function showPosition(position) {
             lat = position.coords.latitude;
             lon = position.coords.longitude;
@@ -63,6 +62,7 @@
                     if (!response.ok) {
                         throw new Error('Failed to fetch location data');
                     }
+                    console.log("nnn");
                     console.log(response.json());
                     return response.json();
                 })
