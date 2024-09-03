@@ -4,6 +4,7 @@ const path = require('path');
 const mongoose = require("mongoose");
 const cors = require('cors');
 
+const PORT = process.env.PORT || 3000;
 
 mongoose.connect("mongodb+srv://tomassvoboda2:Sesquiterpene1@cluster0.jzncc.mongodb.net/");
 const db = mongoose.connection;
@@ -31,7 +32,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });
 
