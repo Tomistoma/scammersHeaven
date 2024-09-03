@@ -20,6 +20,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/id=G8vK1zR4mTqN9Wy', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 const info = require('./routes/info.js');
 app.use('/info/', info);
