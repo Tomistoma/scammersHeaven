@@ -29,7 +29,7 @@ app.use('/info/', info);
 
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://www.steamgiftcards.cz', 'https://steamdelivery-cea04d2b57ab.herokuapp.com'],
   credentials: true,
 };
 
