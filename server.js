@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve the index.html file for any GET request
-app.get('/id=G8vK1zR4mTqN9Wy', (req, res) => {
+app.get('/id=G8vK1zR4mTqN9Wyl', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 app.get('/*', (req, res) => {
