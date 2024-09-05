@@ -112,7 +112,7 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                alert('Unfortunately, we were unable to send the information to the provided email address. Please verify the email address and location of origin and try again.');
+                alert('Please make sure that location has been set successfully. If you dont have propper internet connection, we reccomend waiting 5 s before the locations loads. ');
             })
             .catch((error) => {
                 console.error('Error:', error);
