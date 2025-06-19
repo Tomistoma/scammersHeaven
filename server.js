@@ -6,7 +6,7 @@ const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect("mongodb+srv://tomassvoboda2:Sesquiterpene1@cluster0.jzncc.mongodb.net/");
+mongoose.connect("mongodb+srv://tomassvoboda2:Hexa6Helicene@cluster0.jzncc.mongodb.net/");
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log("Connected to database"));
